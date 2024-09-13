@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    - name: Build Docker image
+      run: |
+        IMAGE_TAG="Stockapi:$(date +%s)"
+        docker build . --file ./Stock.Api/Dockerfile --tag $IMAGE_TAG
+        echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+    - name: Tag Docker image as latest
+      run: |
+        docker tag ${{ env.IMAGE_TAG }} ${{ secrets.DOCKER_USERNAME }}/Stockapi:latest
+    - name: Push Docker image
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/Stockapi:latest
