@@ -9,7 +9,7 @@
   <HasBeginStepCommandLineCredentials>true</HasBeginStepCommandLineCredentials>
   <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
   <SonarQubeVersion>10.6.0.92116</SonarQubeVersion>
-  <SonarProjectKey>IMS_Stocks</SonarProjectKey>
+  <SonarProjectKey>IMS.Stock</SonarProjectKey>
   <AdditionalConfig>
     <ConfigSetting Id="BuildUri" />
     <ConfigSetting Id="TfsUri" />
@@ -136,8 +136,8 @@
     <Property Name="sonar.auth.gitlab.url">https://gitlab.com</Property>
     <Property Name="sonaranalyzer-vbnet.pluginKey">vbnet</Property>
     <Property Name="sonar.updatecenter.url">https://downloads.sonarsource.com/sonarqube/update/update-center.properties</Property>
-    <Property Name="sonar.core.startTime">9/11/2024 2:25:55 PM</Property>
     <Property Name="sonar.core.id">147B411E-AZHgS-9aaJa8sm7hwRdA</Property>
+    <Property Name="sonar.core.startTime">9/13/2024 10:49:47 AM</Property>
   </ServerSettings>
   <LocalSettings>
     <Property Name="sonar.host.url">http://localhost:9000</Property>

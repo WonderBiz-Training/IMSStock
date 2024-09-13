@@ -58,7 +58,7 @@ namespace Stock.Application.Tests.Commands
                           .ReturnsAsync(new FluentValidation.Results.ValidationResult());
 
             _repositoryMock.Setup(x => x.GetStockByIdAsync(stockId, It.IsAny<CancellationToken>()))
-                           .ReturnsAsync((StockModel)null);
+                           .ReturnsAsync(null as StockModel);
 
             // Act & Assert
             var exception = await Assert.ThrowsAsync<StockNotFoundException>(() =>

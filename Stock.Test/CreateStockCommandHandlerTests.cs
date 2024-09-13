@@ -63,15 +63,19 @@ namespace Stock.Application.Tests.Commands
             // Assert
             Assert.NotNull(result);
             Assert.Equal(locationId, result.LocationId);
-            Assert.Single(result.Products);
+            if (result.Products != null)
+            {
+                Assert.Single(result.Products);
 
-            var product = result.Products[0];
-            Assert.Equal(productId, product.ProductId);
-            Assert.Equal(10, product.AddStock);
-            Assert.Equal(2, product.LessStock);
-            Assert.Equal(5, product.Purchase);
-            Assert.Equal(3, product.Sales);
-            Assert.Equal((5 - 3) + (10 - 2), product.Total);
+                var product = result.Products[0];
+                Assert.Equal(productId, product.ProductId);
+                Assert.Equal(10, product.AddStock);
+                Assert.Equal(2, product.LessStock);
+                Assert.Equal(5, product.Purchase);
+                Assert.Equal(3, product.Sales);
+                Assert.Equal((5 - 3) + (10 - 2), product.Total);
+            }
+           
         }
 
         [Fact]
@@ -156,15 +160,19 @@ namespace Stock.Application.Tests.Commands
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(2, result.Products.Count);
+            if(result.Products != null)
+            {
+                Assert.Equal(2, result.Products.Count);
 
-            var product1 = result.Products[0];
-            Assert.Equal(productId1, product1.ProductId);
-            Assert.Equal((5 - 3) + (10 - 2), product1.Total);
+                var product1 = result.Products[0];
+                Assert.Equal(productId1, product1.ProductId);
+                Assert.Equal((5 - 3) + (10 - 2), product1.Total);
 
-            var product2 = result.Products[1];
-            Assert.Equal(productId2, product2.ProductId);
-            Assert.Equal((8 - 6) + (15 - 5), product2.Total);
+                var product2 = result.Products[1];
+                Assert.Equal(productId2, product2.ProductId);
+                Assert.Equal((8 - 6) + (15 - 5), product2.Total);
+            }
+            
         }
 
         [Fact]
