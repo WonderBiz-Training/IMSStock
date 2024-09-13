@@ -233,6 +233,125 @@ namespace Stock.Application.Tests.Commands
             Assert.Contains("Purchase cannot be negative.", exception.Errors.Select(e => e.ErrorMessage));
             Assert.Contains("Sales cannot be negative.", exception.Errors.Select(e => e.ErrorMessage));
         }
+
+        [Fact]
+        public async Task Handle_LocationIdRequired_ShouldThrowValidationException()
+        {
+            // Arrange
+            var createStockCommand = new CreateStockCommand
+            {
+                LocationId = Guid.Empty, // Invalid LocationId (required)
+                CreatedBy = 1,
+                Products = new List<ProductStockCommand>
+                {
+                    new ProductStockCommand
+                    {
+                        ProductId = Guid.NewGuid(),
+                        AddStock = 10,
+                        LessStock = 2,
+                        Purchase = 5,
+                        Sales = 3
+                    }
+                }
+            };
+
+            var validationResult = new ValidationResult
+            {
+                Errors = new List<ValidationFailure>
+                {
+                    new ValidationFailure("LocationId", "LocationId is required.")
+                }
+            };
+
+            _validatorMock.Setup(v => v.ValidateAsync(createStockCommand, It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(validationResult);
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<ValidationException>(() =>
+                _handler.Handle(createStockCommand, CancellationToken.None));
+
+            Assert.Contains("LocationId is required.", exception.Errors.Select(e => e.ErrorMessage));
+        }
+
+        [Fact]
+        public async Task Handle_ProductIdRequired_ShouldThrowValidationException()
+        {
+            // Arrange
+            var createStockCommand = new CreateStockCommand
+            {
+                LocationId = Guid.NewGuid(),
+                CreatedBy = 1,
+                Products = new List<ProductStockCommand>
+                {
+                    new ProductStockCommand
+                    {
+                        ProductId = Guid.Empty, // Invalid ProductId (required)
+                        AddStock = 10,
+                        LessStock = 2,
+                        Purchase = 5,
+                        Sales = 3
+                    }
+                }
+            };
+
+            var validationResult = new ValidationResult
+            {
+                Errors = new List<ValidationFailure>
+                {
+                    new ValidationFailure("Products[0].ProductId", "ProductId is required.")
+                }
+            };
+
+            _validatorMock.Setup(v => v.ValidateAsync(createStockCommand, It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(validationResult);
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<ValidationException>(() =>
+                _handler.Handle(createStockCommand, CancellationToken.None));
+
+            Assert.Contains("ProductId is required.", exception.Errors.Select(e => e.ErrorMessage));
+        }
+
+        [Fact]
+        public async Task Handle_LocationIdAndProductIdRequired_ShouldThrowValidationException()
+        {
+            // Arrange
+            var createStockCommand = new CreateStockCommand
+            {
+                LocationId = Guid.Empty, // Invalid LocationId
+                CreatedBy = 1,
+                Products = new List<ProductStockCommand>
+                {
+                    new ProductStockCommand
+                    {
+                        ProductId = Guid.Empty, // Invalid ProductId
+                        AddStock = 10,
+                        LessStock = 2,
+                        Purchase = 5,
+                        Sales = 3
+                    }
+                }
+            };
+
+            var validationResult = new ValidationResult
+            {
+                Errors = new List<ValidationFailure>
+                {
+                    new ValidationFailure("LocationId", "LocationId is required."),
+                    new ValidationFailure("Products[0].ProductId", "ProductId is required.")
+                }
+            };
+
+            _validatorMock.Setup(v => v.ValidateAsync(createStockCommand, It.IsAny<CancellationToken>()))
+                          .ReturnsAsync(validationResult);
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<ValidationException>(() =>
+                _handler.Handle(createStockCommand, CancellationToken.None));
+
+            Assert.Contains("LocationId is required.", exception.Errors.Select(e => e.ErrorMessage));
+            Assert.Contains("ProductId is required.", exception.Errors.Select(e => e.ErrorMessage));
+        }
     }
 }
 
