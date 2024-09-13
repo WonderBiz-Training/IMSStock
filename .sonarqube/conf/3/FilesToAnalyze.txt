@@ -1,0 +1,10 @@
+﻿D:\IMS\IMSStock\Stock.Api\Controllers\StockController.cs
+D:\IMS\IMSStock\Stock.Api\Program.cs
+D:\IMS\IMSStock\Stock.Api\obj\Debug\net8.0\Stock.Api.GlobalUsings.g.cs
+D:\IMS\IMSStock\Stock.Api\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+D:\IMS\IMSStock\Stock.Api\obj\Debug\net8.0\Stock.Api.AssemblyInfo.cs
+D:\IMS\IMSStock\Stock.Api\obj\Debug\net8.0\Stock.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\IMS\IMSStock\Stock.Api\appsettings.Development.json
+D:\IMS\IMSStock\Stock.Api\appsettings.json
+D:\IMS\IMSStock\Stock.Api\Stock.Api.http
+D:\IMS\IMSStock\Stock.Api\Properties\launchSettings.json

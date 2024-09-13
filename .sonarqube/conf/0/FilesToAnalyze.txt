@@ -1,0 +1,2 @@
+﻿D:\IMS\IMSStock\Stock.Domain\Entities\StockModel.cs
+D:\IMS\IMSStock\Stock.Domain\Interfaces\IStockRepository.cs

@@ -1,0 +1,5 @@
+﻿D:\IMS\IMSStock\Stock.Infrastructure\Data\StockDbContext.cs
+D:\IMS\IMSStock\Stock.Infrastructure\Migrations\20240911065704_Tables.cs
+D:\IMS\IMSStock\Stock.Infrastructure\Migrations\20240911065704_Tables.Designer.cs
+D:\IMS\IMSStock\Stock.Infrastructure\Migrations\StockDbContextModelSnapshot.cs
+D:\IMS\IMSStock\Stock.Infrastructure\Repositories\StockRepository.cs
